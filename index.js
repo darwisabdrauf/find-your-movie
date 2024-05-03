@@ -26,7 +26,7 @@ searchBtn.addEventListener("click", () => {
     if (userInput !== '') {
         console.log('input:', userInput)
 
-    fetch(`http://www.omdbapi.com/?apikey=98bd65f&s=${userInput}`)
+    fetch(`https://www.omdbapi.com/?apikey=98bd65f&s=${userInput}`)
         .then(res => res.json())
         .then(data => {
 
@@ -37,7 +37,7 @@ searchBtn.addEventListener("click", () => {
             
             if (data.Response === "True") {
                 const promises = moviesArray.map(id => {
-                    return fetch(`http://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
+                    return fetch(`https://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
                         .then(res => res.json())
                 })
 
