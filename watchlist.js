@@ -4,7 +4,7 @@ let myMovieWatchlistArray = []
 
 
 const promises = watchlist.map(id => {
-    return fetch(`http://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
+    return fetch(`https://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
         .then(res => res.json())
         .then(data => {
             myMovieWatchlistArray.push(data)
