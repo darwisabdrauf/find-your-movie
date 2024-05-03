@@ -1,26 +1,22 @@
-const addToWatchlist = document.getElementById("add-to-watchlist")
+const addToWatchlistBtn = document.querySelectorAll(".add-to-watchlist")
 const mainContent = document.getElementById("main-content")
 const userSearchInput = document.getElementById(("user-search-input"))
 const searchBtn = document.getElementById("search-btn")
 let moviesArray = []
+let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 
 
-// let isClicked = false
+document.addEventListener("click", (e) => {
+    if (e.target.dataset.id) {
+        const targettedMovie = e.target.dataset.id
+        
+        if (!watchlist.includes(targettedMovie)) {
+            watchlist.push(targettedMovie)
+            localStorage.setItem("watchlist", JSON.stringify(watchlist))
+        }
+    }
+})
 
-// addToWatchlist.addEventListener("click", () => {
-//     if (isClicked) {
-//         addToWatchlist.innerHTML = `
-//             <i id="icon" class="fa-solid fa-circle-plus"></i>
-//             <p id="watchlist-text">Watchlist</p>
-//         `
-//     } else {
-//         addToWatchlist.innerHTML = `
-//             <i id="icon" class="fa-solid fa-circle-minus"></i>
-//             <p id="watchlist-text">Remove</p>
-//         `
-//     }
-//     isClicked = !isClicked
-// })
 
 searchBtn.addEventListener("click", () => {
     const userInput = userSearchInput.value
@@ -43,7 +39,7 @@ searchBtn.addEventListener("click", () => {
                 const promises = moviesArray.map(id => {
                     return fetch(`http://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
                         .then(res => res.json())
-                });
+                })
 
                 Promise.all(promises)
                     .then(movies => {
@@ -66,33 +62,37 @@ searchBtn.addEventListener("click", () => {
 function renderMovies(movies) {
     const moviesList = movies.map(movie => {
         return `
-        <div class="movie">
-            <img src="${movie.Poster}" alt="poster of the movie" class="movie-img"/>
-            <div class="movie-desc">
-                <div class="desc-top">
-                    <h2>${movie.Title}</h2>
-                    <div class="movie-rating">
-                        <i id="icon" class="fa-solid fa-star"></i>
-                        <p class="rating">${movie.imdbRating}</p>
+            <div class="movie">
+                <img src="${movie.Poster}" alt="poster of the movie" class="movie-img"/>
+                <div class="movie-desc">
+                    <div class="desc-top">
+                        <h2>${movie.Title}</h2>
+                        <p class="rating">⭐ ${movie.imdbRating}</p>
+                    </div>
+                    <div class="desc-mid">
+                        <p>${movie.Runtime}</p>
+                        <p>${movie.Genre}</p>
+                        <a id="add-to-watchlist" class="add-to-watchlist">
+                            <i id="icon" class="fa-solid fa-circle-plus" data-id="${movie.imdbID}"></i>
+                            <p id="watchlist-text" data-id="${movie.imdbID}">Watchlist</p>
+                        </a>
+                    </div>
+                    <div class="desc-bottom">
+                        <p class="movie-plot">${movie.Plot}</p>
                     </div>
                 </div>
-                <div class="desc-mid">
-                    <p>${movie.Runtime}</p>
-                    <p>${movie.Genre}</p>
-                    <a id="add-to-watchlist" class="add-to-watchlist">
-                        <i id="icon" class="fa-solid fa-circle-plus"></i>
-                        <p id="watchlist-text">Watchlist</p>
-                    </a>
-                </div>
-                <div class="desc-bottom">
-                    <p class="movie-plot">${movie.Plot}</p>
-                </div>
             </div>
-        </div>
-    `
+        `
     }).join('')
 
     mainContent.innerHTML = moviesList
+
+    addToWatchlistBtn.forEach(btn => {
+        btn.addEventListener("click", (event) => {
+          const clickedMovieId = event.target.dataset.add
+          console.log(`Movie with ID ${clickedMovieId} was added to watchlist`)
+        })
+    })
 }
 
 function renderMoviesNotFoundState () {

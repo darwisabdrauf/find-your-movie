@@ -145,7 +145,7 @@ button {
 
 /* --- MAIN --- */
 main {
-    min-height: 420px;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -263,11 +263,6 @@ main {
     margin: 0;
 }
 
-.movie-rating {
-    display: flex;
-    align-items: center;
-}
-
 .rating {
     font-size: 12px;
 }
@@ -298,12 +293,6 @@ main {
     text-align: center;
 }
 
-.fa-star {
-    color: #FEC654;
-    font-size: 10px;
-    margin-right: 4px;
-}
-
 .fa-circle-plus,
 .fa-circle-minus {
     color: #111827;
@@ -319,10 +308,3 @@ footer{
     padding-bottom: 12px;
     margin: 0;
 }
-
-
-
-
-
-
-
