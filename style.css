@@ -103,8 +103,16 @@ input[type="text"] {
     color: #6B7280;
 }
 
-input[type="text"] {
+input[type="text"],
+button {
     font-family: inherit;
+}
+
+input[type="text"]:focus {
+    color: #111827;
+}
+
+input[type="text"] {
     font-weight: 500;
     padding: 6px;
     width: 80%;
@@ -128,7 +136,6 @@ p {
 }
 
 button {
-    font-family: inherit;
     font-weight: 500;
     background-color: #fff;
     color: #374151;
@@ -137,33 +144,36 @@ button {
 
 
 /* --- MAIN --- */
-main{
-    min-height: 485px;
+main {
+    min-height: 420px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;   
 }
 
-.default-main-styling {
+.initial-state {
     display: flex;
     flex-direction: column;
+    position: relative;
+    margin: auto;
+    width: 70%;
 }
 
 .default-text {
     color: #d1d1d1;
     font-size: 18px;
     font-weight: 600;
-    margin-top: 6px;
-    margin-bottom: 0;
+    margin: 6px auto 0;
+    text-align: center;
+    width: 100%;
 }
 
 .add-some-movies {
     display: flex;
-    justify-content: start;
     align-items: center;
     text-decoration: none;
-    margin-top: 10px;
+    margin: 10px auto;
 }
 
 .recommendation {
@@ -180,6 +190,7 @@ main{
 /* --- MAIN CONTENT --- */
 .main-container {
     display: flex;
+    justify-content: start;
     width: 90%;
     margin: 50px auto 20px;
 }
@@ -188,7 +199,7 @@ main{
     display: flex;
     width: 95%;
     margin: 0 8px;
-    padding: 20px 0;
+    padding: 24px 0;
     border-bottom: 1px solid #ccc;
 }
 
@@ -240,7 +251,7 @@ main{
 
 .desc-mid p{
     font-size: 12px;
-    margin: 0 30px 0 0;
+    margin: 0 20px 0 0;
 }
 
 .desc-mid {
@@ -250,7 +261,6 @@ main{
 .desc-bottom p{
     color: #6B7280;
     margin: 0;
-    line-height: 1.4;
 }
 
 .movie-rating {
@@ -271,10 +281,15 @@ main{
     color: orange;
 }
 
+.movie-plot {
+    text-overflow: ellipsis;
+}
+
 
 /* --- ICONS --- */
-.icon {
+.fa-magnifying-glass {
     padding: 12px 8px 12px 12px;
+    color: #ccc;
 }
 
 .fa-film {
