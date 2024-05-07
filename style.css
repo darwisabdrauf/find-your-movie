@@ -2,25 +2,41 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-black: #0e0e0e;
+    --color-dark-navy: #111827;
+    --color-true-white: #fff;
+    --color-white: #f1f1f1;
+    --color-teal: #009c9c;
+    --color-danger: #f53c3c;
+    --color-light-grey-1: #ccc;
+    --color-light-grey-2: #d1d1d1;
+    --color-medium-grey: #6B7280;
+    --color-dark-grey: #2e2e2e;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f1f1f1;
+    background-color: var(--color-white);
 }
 
 .container {
     height: 100%;
     max-width: 550px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--color-true-white);
+}
+
+.flex {
+    display: flex;
 }
 
 header {
     height: 210px;
-    background-color: #0e0e0e;
-    color: #fff;
-    display: flex;
+    background-color: var(--color-black);
+    color: var(--color-white);
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
@@ -38,14 +54,14 @@ a {
 }
 
 .watchlist {
-    color: #fff;
+    color: var(--color-true-white);
     font-size: 14px;
     font-weight: 600;
     z-index: 1;
 }
 
 .watchlist:hover {
-    color: orange;
+    color: var(--color-teal);
 }
 
 header::after {
@@ -65,23 +81,21 @@ header::after {
 
 /* --- SEARCH BAR --- */
 .search-bar {
-    background-color: #fff;
-    width: 470px;
+    background-color: var(--color-true-white);
+    max-width: 470px;
     height: 45px;
-    border: 2px solid #ccc;
+    border: 2px solid var(--color-light-grey-1)  ;
     border-radius: 6px;
     margin: 0 auto;
     position: absolute;
     top: 185px;
     left: 0;
     right: 0;
-    display: flex;
 }
 
 .search-input {
     width: 70%;
     height: 100%;
-    display: flex;
     justify-content: flex-start;
     align-items: center;
 }
@@ -90,17 +104,16 @@ header::after {
 .search-btn {
     width: 30%;
     height: 100%;
-    border-left: 2px solid #ccc;
+    border-left: 2px solid var(--color-light-grey-1);
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .icon,
 input[type="text"] {
-    color: #6B7280;
+    color: var(--color-medium-grey);
 }
 
 input[type="text"],
@@ -109,7 +122,7 @@ button {
 }
 
 input[type="text"]:focus {
-    color: #111827;
+    color: var(--color-medium-grey);
 }
 
 input[type="text"] {
@@ -125,35 +138,33 @@ p {
 
 .search-btn p {
     margin: 0;
-    color: #374151;
+    color: var(--color-medium-grey);
     font-weight: 500;
 }
 
 .search-btn:hover,
 .search-btn:hover p {
-    background-color: #111827;
-    color: #fff;
+    background-color: var(--color-dark-navy);
+    color: var(--color-true-white);
 }
 
 button {
     font-weight: 500;
-    background-color: #fff;
-    color: #374151;
+    background-color: var(--color-true-white);
+    color: var(--color-dark-navy);
     border: none;
 }
 
 
 /* --- MAIN --- */
 main {
-    min-height: 70vh;
-    display: flex;
+    min-height: 80vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;   
 }
 
 .initial-state {
-    display: flex;
     flex-direction: column;
     position: relative;
     margin: auto;
@@ -161,7 +172,7 @@ main {
 }
 
 .default-text {
-    color: #d1d1d1;
+    color: var(--color-light-grey-2);
     font-size: 18px;
     font-weight: 600;
     margin: 6px auto 0;
@@ -170,37 +181,38 @@ main {
 }
 
 .add-some-movies {
-    display: flex;
     align-items: center;
     text-decoration: none;
     margin: 10px auto;
 }
 
 .recommendation {
-    color: #111827;
+    color: var(--color-dark-navy);
     font-size: 14px;
     font-weight: 600;
 }
 
 .add-some-movies:hover .fa-circle-plus,
 .add-some-movies:hover .recommendation{
-    color: orange;
+    color: var(--color-teal);
+}
+
+.teal-text {
+    color: var(--color-teal);
 }
 
 /* --- MAIN CONTENT --- */
 .main-container {
-    display: flex;
     justify-content: start;
     width: 90%;
     margin: 50px auto 20px;
 }
 
 .movie {
-    display: flex;
     width: 95%;
     margin: 0 8px;
     padding: 24px 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--color-light-grey-1);
 }
 
 .movie:last-of-type {
@@ -216,16 +228,10 @@ main {
 .movie-desc {
     width: 380px;
     height: 150px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.desc-top, 
-.desc-mid,
-.desc-bottom {
-    display: flex;
-}
 
 .desc-top {
     align-items: center;
@@ -238,20 +244,28 @@ main {
 }
 
 .desc-top h2 {
-    color: #0e0e0e;
+    color: var(--color-black);
     font-size: 18px;
     font-weight: 600;
     margin-right: 16px;
 }
 
+.desc-top p {
+    min-width: 40px;
+}
+
 .desc-top p,
 .desc-mid p{
-    color: #111827;
+    color: var(--color-dark-navy);
 }
 
 .desc-mid p{
     font-size: 12px;
-    margin: 0 20px 0 0;
+    margin: 0 16px 0 0;
+}
+
+.desc-mid > div > p {
+    margin-right: 0;
 }
 
 .desc-mid {
@@ -259,7 +273,7 @@ main {
 }
 
 .desc-bottom p{
-    color: #6B7280;
+    color: var(--color-medium-grey);
     margin: 0;
 }
 
@@ -267,13 +281,19 @@ main {
     font-size: 12px;
 }
 
-.add-to-watchlist {
-    display: flex;
+.add-to-watchlist,
+.remove-from-watchlist {
+    cursor: pointer;
 }
 
 .add-to-watchlist:hover i,
 .add-to-watchlist:hover p {
-    color: orange;
+    color: var(--color-teal);
+}
+
+.remove-from-watchlist:hover i,
+.remove-from-watchlist:hover p {
+    color: var(--color-danger);
 }
 
 .movie-plot {
@@ -284,27 +304,39 @@ main {
 /* --- ICONS --- */
 .fa-magnifying-glass {
     padding: 12px 8px 12px 12px;
-    color: #ccc;
+    color: var(--color-light-grey-1);
 }
 
 .fa-film {
     font-size: 60px;
-    color: #d1d1d1;
+    color: var(--color-light-grey-2);
     text-align: center;
 }
 
 .fa-circle-plus,
-.fa-circle-minus {
-    color: #111827;
+.fa-circle-minus,
+.fa-circle-check {
+    color: var(--color-dark-navy);
     margin-right: 4px;
 }
 
 
 /* --- FOOTER --- */
-footer{
-    color: #6B7280;
+footer p{
+    color: var(--color-medium-grey);
     font-size: 10px;
     text-align: center;
     padding-bottom: 12px;
-    margin: 0;
+    margin: 0 auto;
+}
+
+footer span:hover,
+footer span:active {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--color-teal);
+}
+
+.teal-color {
+    color: var(--color-teal);
 }

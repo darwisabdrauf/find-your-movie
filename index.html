@@ -12,22 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- FONTAWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- WEB ICON -->
-    <link rel="icon" href="" type="image/x-icon"/>
+    <!-- FAV ICON -->
+    <link rel="icon" href="img/movie-icon.png" type="image/x-icon"/>
     <!-- CSS FILE -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <!-- HEADER -->
-        <header>
+        <header class="flex">
             <h1 class="main-header-text">Find Your Movie</h1>
             <a href="watchlist.html" class="watchlist">My Watchlist</a >
         </header>
 
         <!-- SEARCH BAR -->
-        <section class="search-bar">
-            <div class="search-input">
+        <section class="search-bar flex">
+            <div class="search-input flex">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input
                     type="text"
@@ -36,14 +36,14 @@
                     placeholder="Search your favourite movie"
                 />
             </div>
-            <button id="search-btn" class="search-btn">
+            <button id="search-btn" class="search-btn flex">
                 <p>Search</p>
             </button>
         </section>
 
         <!-- MAIN CONTENT (MOVIE LIST) -->
-        <main id="main-content" class="main-container">
-            <div class="initial-state">
+        <main id="main-content" class="main-container flex">
+            <div class="initial-state flex">
                 <i class="fa-solid fa-film"></i>
                 <p class="default-text">Start Exploring</p>
             </div>
@@ -51,7 +51,7 @@
 
         <!-- FOOTER -->
         <footer>
-            &copy; 2024 developed by darwisabdrauf
+            <p>&copy; 2024 developed by darwisabdrauf |<span> Light Mode</span></p>
         </footer>
     </div>
     
