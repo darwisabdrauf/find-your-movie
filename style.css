@@ -353,7 +353,6 @@ footer span:active {
 @media (max-width: 480px) {
     header {
         padding: 0 1.25em;
-        border: 5px solid red;
     }
 
     .main-header-text {
@@ -368,13 +367,11 @@ footer span:active {
         width: 100%;
         margin: 0 0.5em; 
         padding: 2rem 0; 
-        border-bottom: 1px solid var(--color-light-grey-1);
     }
 
     .desc-top h2 {
         font-size: 1rem;
     }
-
 
     .desc-mid{
         margin: 0.5em 0;
