@@ -1,6 +1,7 @@
 const addToWatchlist = document.querySelectorAll(".add-to-watchlist")
 const mainContent = document.getElementById("main-content")
 const searchBtn = document.getElementById("search-btn")
+const displayMode = document.getElementById("display-mode")
 let moviesArray = []
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 
@@ -102,9 +103,8 @@ function renderMovies(movies) {
                     <div class="desc-mid flex">
                         <p>${movie.Runtime}</p>
                         <p>${movie.Genre}</p>
-                        <div id="add-to-watchlist" class="add-to-watchlist flex" data-id="${movie.imdbID}">
-                            <i id="add-icon" class="fa-solid fa-circle-plus" data-id="${movie.imdbID}"></i>
-                            <p id="watchlist-text" data-id="${movie.imdbID}">Watchlist</p>
+                        <div id="add-to-watchlist" class="add-to-watchlist" data-id="${movie.imdbID}">
+                            <p id="watchlist-text" data-id="${movie.imdbID}"><i id="add-icon" class="fa-solid fa-circle-plus"></i>Watchlist</p>
                         </div>
                     </div>
                     <div class="desc-bottom flex">
@@ -131,8 +131,21 @@ function renderAddedToWatchlist(targettedMovie) {
 
     if (movieAddedToWatchlist) {
         movieAddedToWatchlist.innerHTML = `
-            <i id="add-icon" class="fa-solid fa-circle-check teal-color"></i>
-            <p id="watchlist-text" class"teal-color">Added to watchlist</p>
+            <p id="watchlist-text" class"teal-color"><i id="add-icon" class="fa-solid fa-circle-check teal-color"></i>Added to watchlist</p>
         `
     }
 }
+
+// displayMode.addEventListener("click", toggleDisplayMode)
+
+// function toggleDisplayMode() {
+//     document.body.classList.toggle('dark-mode')
+//     document.getElementById("container").classList.toggle('dark-mode')
+
+//     if (document.body.classList.contains('dark-mode')) {
+//         displayMode.textContent = " Dark Mode"
+
+//     } else {
+//         displayMode.textContent = " Light Mode"
+//     }
+// }

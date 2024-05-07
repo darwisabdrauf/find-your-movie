@@ -86,9 +86,8 @@ function renderMovies(myMovies) {
                     <div class="desc-mid flex">
                         <p>${movie.Runtime}</p>
                         <p>${movie.Genre}</p>
-                        <div id="add-to-watchlist" class="remove-from-watchlist flex">
-                            <i id="icon" class="fa-solid fa-circle-minus" data-id="${movie.imdbID}"></i>
-                            <p id="watchlist-text" data-id="${movie.imdbID}">Remove</p>
+                        <div id="add-to-watchlist" class="remove-from-watchlist">
+                            <p id="watchlist-text" data-id="${movie.imdbID}"><i id="icon" class="fa-solid fa-circle-minus"></i>Remove</p>
                         </div>
                     </div>
                     <div class="desc-bottom flex">
@@ -107,8 +106,7 @@ function renderEmptyWatchlistState() {
         <div class="initial-state flex">
             <p class="default-text">Your watchlist is looking a little empty...</p>
             <a href="index.html" class="add-some-movies flex">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span class="recommendation">Let's add some movies!</span>
+                <span class="recommendation"><i class="fa-solid fa-circle-plus"></i>Let's add some movies!</span>
             </a>
         </div>
     `
