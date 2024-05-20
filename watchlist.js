@@ -1,8 +1,14 @@
 const mainContent = document.getElementById("main-content")
+const displayModeBtn = document.getElementById("display-mode")
+const currentDisplayMode = localStorage.getItem("displayMode") || "light"
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 let myMovieWatchlistArray = []
 
 /* --- event listener --- */
+document.addEventListener("DOMContentLoaded", () => {
+    setDisplayMode(currentDisplayMode)
+})
+
 document.addEventListener("click", (e) => {
     if (e.target.dataset.id) {
         console.log(e.target.dataset.id)
@@ -19,6 +25,11 @@ document.addEventListener("click", (e) => {
             renderEmptyWatchlistState()
         }
     }
+})
+
+displayModeBtn.addEventListener("click", () => {
+    const newMode = document.body.classList.contains("dark-mode") ? "light" : "dark"
+    setDisplayMode(newMode)
 })
 
 renderWatchlist()
@@ -50,28 +61,6 @@ async function renderWatchlist() {
         console.error('Error rendering movies:', error)
     }
 }
-
-// const promises = watchlist.map(id => {
-//     return fetch(`https://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
-//         .then(res => res.json())
-//         .then(data => {
-//             myMovieWatchlistArray.push(data)
-//         })
-//         .catch(error => console.error('Error fetching movie data:', error))
-// })
-
-// Promise.all(promises)
-//     .then(() => {
-//         console.log(myMovieWatchlistArray)
-//         if (watchlist.length === 0) {
-//             renderEmptyWatchlistState()
-//         } else {
-//             renderMovies(myMovieWatchlistArray)
-//         }
-        
-//     })
-//     .catch(error => console.error('Error rendering movies:', error))
-
 
 function renderMovies(myMovies) {
     const myMoviesList = myMovies.map(movie => {
@@ -110,5 +99,17 @@ function renderEmptyWatchlistState() {
             </a>
         </div>
     `
+}
+
+function setDisplayMode(mode) {
+    const isDarkMode = mode === "dark"
+
+    document.body.classList.toggle("dark-mode", isDarkMode)
+    document.getElementById("container").classList.toggle("dark-mode-bg", isDarkMode)
+    document.querySelectorAll(".movie").forEach(movieContainer => movieContainer.classList.toggle("dark-mode-border", isDarkMode))
+    document.querySelectorAll(".movie-plot").forEach(plot => plot.classList.toggle("dark-mode-p", isDarkMode))
+    
+    displayModeBtn.textContent = isDarkMode ? " Dark Mode" : " Light Mode"
+    localStorage.setItem("displayMode", mode)
 }
 

@@ -1,12 +1,17 @@
 const addToWatchlist = document.querySelectorAll(".add-to-watchlist")
 const mainContent = document.getElementById("main-content")
 const searchBtn = document.getElementById("search-btn")
-const displayMode = document.getElementById("display-mode")
+const displayModeBtn = document.getElementById("display-mode")
+const currentDisplayMode = localStorage.getItem("displayMode") || "light"
 let moviesArray = []
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 
 
 /* --- event listener --- */
+document.addEventListener("DOMContentLoaded", () => {
+    setDisplayMode(currentDisplayMode)
+})
+
 document.addEventListener("click", (e) => {
     if (e.target.dataset.id) {
         const targettedMovie = e.target.dataset.id
@@ -21,14 +26,19 @@ document.addEventListener("click", (e) => {
 
 searchBtn.addEventListener("click", getMoviesData)
 
+displayModeBtn.addEventListener("click", () => {
+    const newMode = document.body.classList.contains("dark-mode") ? "light" : "dark"
+    setDisplayMode(newMode)
+})
+
 
 /* --- function --- */
 async function getMoviesData() {
     const userSearchInput = document.getElementById(("user-search-input")).value
     moviesArray = []
 
-    if (userSearchInput !== '') {
-        console.log('movie query:', userSearchInput)
+    if (userSearchInput !== "") {
+        console.log("movie query:", userSearchInput)
 
         try {
             const res = await fetch(`https://www.omdbapi.com/?apikey=98bd65f&s=${userSearchInput}`)
@@ -48,47 +58,11 @@ async function getMoviesData() {
             }
         } 
         catch (error) {
-            console.error('error: movies not found')
+            console.error("error: movies not found")
             renderMoviesNotFoundState()
         }
     }
 }
-
-// searchBtn.addEventListener("click", () => {
-//     const userInput = userSearchInput.value
-//     moviesArray = []
-
-//     if (userInput !== '') {
-//         console.log('input:', userInput)
-
-//     fetch(`http://www.omdbapi.com/?apikey=98bd65f&s=${userInput}`)
-//         .then(res => res.json())
-//         .then(data => {
-//             data.Search.forEach(movie => moviesArray.push(movie.imdbID))
-//             console.log(moviesArray)
-            
-//             if (data.Response === "True") {
-//                 const promises = moviesArray.map(id => {
-//                     return fetch(`http://www.omdbapi.com/?apikey=98bd65f&i=${id}`)
-//                         .then(res => res.json())
-//                 })
-
-//                 Promise.all(promises)
-//                     .then(movies => {
-//                         console.log(movies)
-//                         renderMovies(movies)
-//                     })
-//                     .catch(error => {
-//                         console.error('Error fetching movie data')
-//                     })
-//             }
-//         })
-//         .catch(error => {
-//             console.error('error: movies not found')
-//             setTimeout(renderMoviesNotFoundState, 3000)
-//         })
-//     }
-// })
 
 function renderMovies(movies) {
     const moviesList = movies.map(movie => {
@@ -113,7 +87,7 @@ function renderMovies(movies) {
                 </div>
             </div>
         `
-    }).join('')
+    }).join("")
 
     mainContent.innerHTML = moviesList
 }
@@ -136,16 +110,14 @@ function renderAddedToWatchlist(targettedMovie) {
     }
 }
 
-// displayMode.addEventListener("click", toggleDisplayMode)
+function setDisplayMode(mode) {
+    const isDarkMode = mode === "dark"
 
-// function toggleDisplayMode() {
-//     document.body.classList.toggle('dark-mode')
-//     document.getElementById("container").classList.toggle('dark-mode')
-
-//     if (document.body.classList.contains('dark-mode')) {
-//         displayMode.textContent = " Dark Mode"
-
-//     } else {
-//         displayMode.textContent = " Light Mode"
-//     }
-// }
+    document.body.classList.toggle("dark-mode", isDarkMode)
+    document.getElementById("container").classList.toggle("dark-mode-bg", isDarkMode)
+    document.querySelectorAll(".movie").forEach(movieContainer => movieContainer.classList.toggle("dark-mode-border", isDarkMode))
+    document.querySelectorAll(".movie-plot").forEach(plot => plot.classList.toggle("dark-mode-p", isDarkMode))
+    
+    displayModeBtn.textContent = isDarkMode ? " Dark Mode" : " Light Mode"
+    localStorage.setItem("displayMode", mode)
+}
