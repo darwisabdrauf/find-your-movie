@@ -353,6 +353,10 @@ body.dark-mode {
     color: var(--color-medium-grey-2);
 }
 
+.recommendation.dark-mode {
+    color: var(--color-white);
+}
+
 
 /* --- SMALL MOBILE SCREEN */
 @media (max-width: 480px) {
