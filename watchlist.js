@@ -108,7 +108,10 @@ function setDisplayMode(mode) {
     document.getElementById("container").classList.toggle("dark-mode-bg", isDarkMode)
     document.querySelectorAll(".movie").forEach(movieContainer => movieContainer.classList.toggle("dark-mode-border", isDarkMode))
     document.querySelectorAll(".movie-plot").forEach(plot => plot.classList.toggle("dark-mode-p", isDarkMode))
-    document.querySelector(".recommendation").classList.toggle("dark-mode", isDarkMode)
+
+    if (watchlist.length === 0) {
+        document.querySelector(".recommendation").classList.toggle("dark-mode", isDarkMode)
+    }
     
     displayModeBtn.textContent = isDarkMode ? " Dark Mode" : " Light Mode"
     localStorage.setItem("displayMode", mode)
